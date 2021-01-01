@@ -1,17 +1,18 @@
-const path = require('path')
 const express = require('express')
+const path = require('path')
+
 const app = express()
 
-const views = path.join(__dirname, 'src/views')
+const views = path.join(__dirname, './views')
 
-app.listen(3000,()=>{
-    console.log("Server listening for requests at port 3000")
-})
-
-app.get('/', (res,req)=>{
+app.get('/', (req, res)=>{
     res.sendFile(views+'/index.html')
 })
 
 app.use((req,res)=>{
     res.sendFile(views+'/404.html')
+})
+
+app.listen(process.env.PORT || 3000,()=>{
+    console.log("Server listening for requests at port 3000")
 })
