@@ -3,10 +3,13 @@ const path = require('path')
 
 const app = express()
 
-const views = path.join(__dirname, './views')
+const views = path.join(__dirname, './src/views')
+const public = path.join(__dirname, './public')
+
+app.use(express.static(public))
 
 app.get('/', (req, res)=>{
-    res.sendFile(views+'/index.html')
+    res.sendFile(public+'/index.html')
 })
 
 app.use((req,res)=>{
