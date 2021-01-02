@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo App | <%= title %></title>
-</head>
+<%- includes('./partials/head.ejs') %>
 <body>
+    <%- include('./parials/nav.ejs') %>
     <div class="container">
         <h2>Welcome to ToDo App!</h2>
+        <% if(tods.length > 0){ %>
+            <h4><%= todo.task %></h4>
+        <% }else{ %>
+            <p>There are no todos for now</p>
+        <% } %>
     </div>
+    <%- include('./partials/footer.ejs') %>
 </body>
 </html>
