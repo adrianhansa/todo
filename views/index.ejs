@@ -4,7 +4,9 @@
     <div class="container">
         <h2>Welcome to ToDo App!</h2>
         <% if(tods.length > 0){ %>
-            <h4><%= todo.task %></h4>
+            <% todos.forEach(todo=> { %>
+                <h4><%= todo.task %></h4>
+            <% }) %>
         <% }else{ %>
             <p>There are no todos for now</p>
         <% } %>
