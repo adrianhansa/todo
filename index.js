@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const mongoose = require('mongoose')
+const Todo = require('./src/models/todo')
 
 const app = express()
 
@@ -27,6 +28,15 @@ app.get('/', (req, res)=>{
         {id: 3, task: "Exercise 55 minutes", completed: false},
     ]
     res.render('index',{title:"Home page", todos})
+})
+
+app.get('/todos/create',(req,res)=>{
+    const todo = new Todo({
+        content: "Complete Todo Application"
+    })
+    todo.save().then(result=>{
+        res.redirect('/')
+    }).catch(error=>console.log(error))
 })
 
 app.get('/about',(req,res)=>{
