@@ -22,12 +22,9 @@ const public = path.join(__dirname, './public')
 app.use(express.static(public))
 
 app.get('/', (req, res)=>{
-    const todos = [
-        {id: 1, task: "Study Excel", completed: false},
-        {id: 2, task: "Buy some water", completed: false},
-        {id: 3, task: "Exercise 55 minutes", completed: false},
-    ]
-    res.render('index',{title:"Home page", todos})
+    Todo.find().the(result=>{
+        res.render('index',{title:"Home page", todos:result})
+    }).catch(error=>console.log(error))
 })
 
 app.get('/todos/create',(req,res)=>{
