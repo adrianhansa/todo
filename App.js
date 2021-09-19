@@ -7,6 +7,8 @@ import {
   View,
   FlatList,
 } from "react-native";
+import Header from "./Header";
+import Todo from "./Todo";
 
 export default function App() {
   const [todo, setTodo] = useState("");
@@ -18,21 +20,24 @@ export default function App() {
     console.log(todos);
   };
   return (
-    <View style={styles.container}>
-      <TextInput
-        placeholder="Enter a todo"
-        style={styles.inputText}
-        value={todo}
-        onChangeText={(e) => setTodo(e)}
-      />
-      <Button title="Add Todo" onPress={() => addTodo(todo)} />
-      <FlatList
-        data={todos}
-        renderItem={({ item }) => {
-          return <Text>{item.task}</Text>;
-        }}
-        keyExtractor={(item) => item.id}
-      />
+    <View style={styles.appContainer}>
+      <Header />
+      <View style={styles.container}>
+        <TextInput
+          placeholder="Enter a todo"
+          style={styles.inputText}
+          value={todo}
+          onChangeText={(e) => setTodo(e)}
+        />
+        <Button title="Add Todo" onPress={() => addTodo(todo)} />
+        <FlatList
+          data={todos}
+          renderItem={({ item }) => {
+            return <Todo item={item} />;
+          }}
+          keyExtractor={(item) => item.id}
+        />
+      </View>
     </View>
   );
 }
@@ -43,6 +48,10 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
+    padding: 30,
+  },
+  appContainer: {
+    flex: 1,
   },
   inputText: {
     padding: 10,
